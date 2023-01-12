@@ -142,10 +142,6 @@ end
 function PSQL.setup(config)
   PSQL.config = vim.tbl_extend('force', PSQL.config, config or {})
 
-  if PSQL.config.database_name == '' then
-    error('psql plugin: database_name was not provided')
-  end
-
   map_opts = {noremap = true, silent = true, nowait = true}
   vim.api.nvim_set_keymap('n', PSQL.config.execute_paragraph, ":lua require('psql').query_paragraph()<CR>", map_opts)
   vim.api.nvim_set_keymap('n', PSQL.config.execute_line, ":lua require('psql').query_current_line()<CR>", map_opts)
